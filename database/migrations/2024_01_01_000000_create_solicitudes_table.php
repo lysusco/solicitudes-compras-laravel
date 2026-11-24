@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('usuario_id')->constrained('users');
+            $table->foreignId('usuario_id')->nullable()->constrained('users');
             $table->string('estado')->default('pendiente');
             $table->text('observacion')->nullable();
             $table->decimal('total', 12, 2)->default(0);
@@ -19,7 +19,8 @@ return new class extends Migration {
         Schema::create('solicitud_detalles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('solicitud_id')->constrained('solicitudes')->cascadeOnDelete();
-            $table->unsignedBigInteger('producto_id');
+            $table->unsignedBigInteger('producto_id')->nullable();
+            $table->string('producto_nombre');
             $table->integer('cantidad');
             $table->decimal('precio_unitario', 12, 2)->default(0);
             $table->timestamps();
