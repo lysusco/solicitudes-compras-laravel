@@ -7,7 +7,10 @@
 </head>
 <body class="bg-gray-100">
   <div class="max-w-5xl mx-auto py-8 px-4">
-    <h1 class="text-2xl font-bold mb-6">Solicitudes de Compra</h1>
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold">Solicitudes de Compra</h1>
+      <a href="{{ route('solicitudes.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded">Nueva solicitud</a>
+    </div>
 
     @if (session('status'))
       <div class="mb-4 p-3 bg-green-100 text-green-800 rounded">{{ session('status') }}</div>
@@ -40,6 +43,7 @@
               </td>
               <td class="px-4 py-3">${{ number_format($s->total, 0, ',', '.') }}</td>
               <td class="px-4 py-3 space-x-2">
+                <a href="{{ route('solicitudes.show', $s) }}" class="text-blue-600 hover:underline">Ver</a>
                 @if ($s->estado === 'pendiente')
                   <form method="POST" action="{{ route('solicitudes.aprobar', $s) }}" class="inline">
                     @csrf
@@ -48,6 +52,11 @@
                   <form method="POST" action="{{ route('solicitudes.rechazar', $s) }}" class="inline">
                     @csrf
                     <button class="text-red-600 hover:underline">Rechazar</button>
+                  </form>
+                @elseif ($s->estado === 'aprobada')
+                  <form method="POST" action="{{ route('solicitudes.finalizar', $s) }}" class="inline">
+                    @csrf
+                    <button class="text-blue-600 hover:underline">Finalizar</button>
                   </form>
                 @endif
               </td>
