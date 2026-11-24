@@ -2,10 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nueva Solicitud de Compra</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    html { scroll-padding-top: 4rem; }
+    :focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: 4px; }
   </style>
 </head>
 <body style="background:#f5f3ff;min-height:100vh;">
@@ -32,7 +35,7 @@
 
       <div class="mb-6">
         <label style="display:block;font-weight:600;color:#312e81;margin-bottom:6px;font-size:14px;">Observación</label>
-        <textarea name="observacion" rows="3" style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:10px 12px;font-size:14px;color:#334155;outline:none;" placeholder="Notas opcionales...">{{ old('observacion') }}</textarea>
+        <textarea name="observacion" rows="3" style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:10px 12px;font-size:14px;color:#334155;" placeholder="Notas opcionales...">{{ old('observacion') }}</textarea>
       </div>
 
       <div class="mb-6">
@@ -66,9 +69,9 @@
       const tr = document.createElement('tr');
       tr.style.borderBottom = '1px solid #f1f5f9';
       tr.innerHTML = `
-        <td style="padding:8px 4px;"><input name="items[${idx}][producto_nombre]" required style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;font-size:13px;color:#334155;outline:none;"></td>
-        <td style="padding:8px 4px;"><input type="number" name="items[${idx}][cantidad]" min="1" required style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;font-size:13px;color:#334155;outline:none;"></td>
-        <td style="padding:8px 4px;"><input type="number" step="0.01" name="items[${idx}][precio_unitario]" min="0" required style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;font-size:13px;color:#334155;outline:none;"></td>
+        <td style="padding:8px 4px;"><input name="items[${idx}][producto_nombre]" required style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;font-size:13px;color:#334155;"></td>
+        <td style="padding:8px 4px;"><input type="number" name="items[${idx}][cantidad]" min="1" required style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;font-size:13px;color:#334155;"></td>
+        <td style="padding:8px 4px;"><input type="number" step="0.01" name="items[${idx}][precio_unitario]" min="0" required style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;font-size:13px;color:#334155;"></td>
         <td style="padding:8px 4px;"><button type="button" class="removeItem" style="color:#e11d48;background:none;border:none;cursor:pointer;font-size:13px;">Eliminar</button></td>
       `;
       body.appendChild(tr);

@@ -2,10 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Detalle Solicitud #{{ $solicitud->id }}</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    html { scroll-padding-top: 4rem; }
+    :focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: 4px; }
   </style>
 </head>
 <body style="background:#f5f3ff;min-height:100vh;">
