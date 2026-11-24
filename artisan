@@ -1,0 +1,5 @@
+#!/usr/bin/env php
+<?php
+// Placeholder: en un proyecto Laravel real este archivo es el CLI de Artisan.
+// Ejecuta: php artisan serve, php artisan migrate, etc.
+echo "Artisan placeholder. Instala Laravel para usar comandos reales.\n";
