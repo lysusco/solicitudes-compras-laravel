@@ -4,17 +4,22 @@
   <meta charset="UTF-8" />
   <title>Nueva Solicitud de Compra</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  </style>
 </head>
-<body class="bg-gray-100">
-  <div class="max-w-4xl mx-auto py-8 px-4">
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-bold">Nueva Solicitud de Compra</h1>
-      <a href="{{ route('solicitudes.index') }}" class="text-blue-600 hover:underline">Volver al listado</a>
+<body style="background:#f5f3ff;min-height:100vh;">
+  <header style="background:#ffffffcc;backdrop-filter:blur(8px);border-bottom:1px solid #e0e7ff;">
+    <div class="max-w-4xl mx-auto py-4 px-4 flex items-center justify-between">
+      <h1 style="font-size:1.5rem;font-weight:700;color:#312e81;">Nueva Solicitud de Compra</h1>
+      <a href="{{ route('solicitudes.index') }}" style="color:#6366f1;font-weight:500;font-size:14px;">Volver al listado</a>
     </div>
+  </header>
 
+  <main class="max-w-4xl mx-auto py-8 px-4">
     @if ($errors->any())
-      <div class="mb-4 p-3 bg-red-100 text-red-800 rounded">
-        <ul class="list-disc pl-5">
+      <div class="mb-4 p-3 rounded-lg" style="background:#fee2e2;color:#991b1b;">
+        <ul class="list-disc pl-5 space-y-1">
           @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
           @endforeach
@@ -22,49 +27,49 @@
       </div>
     @endif
 
-    <form method="POST" action="{{ route('solicitudes.store') }}" class="bg-white shadow rounded-lg p-6 space-y-6">
+    <form method="POST" action="{{ route('solicitudes.store') }}" style="background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06);">
       @csrf
 
-      <div>
-        <label class="block text-sm font-medium mb-1">Observación</label>
-        <textarea name="observacion" rows="3" class="w-full border rounded px-3 py-2">{{ old('observacion') }}</textarea>
+      <div class="mb-6">
+        <label style="display:block;font-weight:600;color:#312e81;margin-bottom:6px;font-size:14px;">Observación</label>
+        <textarea name="observacion" rows="3" style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:10px 12px;font-size:14px;color:#334155;outline:none;" placeholder="Notas opcionales...">{{ old('observacion') }}</textarea>
       </div>
 
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="text-lg font-semibold">Items</h2>
-          <button type="button" id="addItem" class="px-3 py-1 bg-blue-600 text-white rounded text-sm">Agregar item</button>
+      <div class="mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <h2 style="font-weight:600;color:#312e81;font-size:16px;">Items</h2>
+          <button type="button" id="addItem" style="background:#6366f1;color:#fff;padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;">Agregar item</button>
         </div>
-        <table class="w-full text-sm border" id="itemsTable">
-          <thead class="bg-gray-50">
-            <tr>
-              <th class="px-3 py-2 text-left">Producto</th>
-              <th class="px-3 py-2 text-left">Cantidad</th>
-              <th class="px-3 py-2 text-left">Precio unitario</th>
-              <th class="px-3 py-2"></th>
-            </tr>
-          </thead>
-          <tbody id="itemsBody"></tbody>
-        </table>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;font-size:13px;border-collapse:collapse;">
+            <thead>
+              <tr style="color:#6366f1;text-align:left;border-bottom:1px solid #e0e7ff;">
+                <th style="padding:8px 4px;">Producto</th>
+                <th style="padding:8px 4px;">Cantidad</th>
+                <th style="padding:8px 4px;">Precio unitario</th>
+                <th style="padding:8px 4px;"></th>
+              </tr>
+            </thead>
+            <tbody id="itemsBody"></tbody>
+          </table>
+        </div>
       </div>
 
-      <div class="flex justify-end">
-        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">Guardar solicitud</button>
-      </div>
+      <button type="submit" style="width:100%;background:#6366f1;color:#fff;padding:12px;border-radius:8px;font-weight:600;font-size:15px;border:none;cursor:pointer;" class="hover:opacity-90">Guardar solicitud</button>
     </form>
-  </div>
+  </main>
 
   <script>
     let idx = 0;
     const body = document.getElementById('itemsBody');
     function addRow() {
       const tr = document.createElement('tr');
-      tr.className = 'border-t';
+      tr.style.borderBottom = '1px solid #f1f5f9';
       tr.innerHTML = `
-        <td class="px-3 py-2"><input name="items[${idx}][producto_nombre]" required class="w-full border rounded px-2 py-1"></td>
-        <td class="px-3 py-2"><input type="number" name="items[${idx}][cantidad]" min="1" required class="w-full border rounded px-2 py-1"></td>
-        <td class="px-3 py-2"><input type="number" step="0.01" name="items[${idx}][precio_unitario]" min="0" required class="w-full border rounded px-2 py-1"></td>
-        <td class="px-3 py-2"><button type="button" class="text-red-600 removeItem">Eliminar</button></td>
+        <td style="padding:8px 4px;"><input name="items[${idx}][producto_nombre]" required style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;font-size:13px;color:#334155;outline:none;"></td>
+        <td style="padding:8px 4px;"><input type="number" name="items[${idx}][cantidad]" min="1" required style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;font-size:13px;color:#334155;outline:none;"></td>
+        <td style="padding:8px 4px;"><input type="number" step="0.01" name="items[${idx}][precio_unitario]" min="0" required style="width:100%;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;font-size:13px;color:#334155;outline:none;"></td>
+        <td style="padding:8px 4px;"><button type="button" class="removeItem" style="color:#e11d48;background:none;border:none;cursor:pointer;font-size:13px;">Eliminar</button></td>
       `;
       body.appendChild(tr);
       idx++;
