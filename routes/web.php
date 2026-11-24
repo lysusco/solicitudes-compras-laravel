@@ -10,3 +10,4 @@ Route::get('/', function () {
 Route::resource('solicitudes', SolicitudController::class);
 Route::post('solicitudes/{solicitud}/aprobar', [SolicitudController::class, 'aprobar'])->name('solicitudes.aprobar');
 Route::post('solicitudes/{solicitud}/rechazar', [SolicitudController::class, 'rechazar'])->name('solicitudes.rechazar');
+Route::post('solicitudes/{solicitud}/finalizar', [SolicitudController::class, 'finalizar'])->name('solicitudes.finalizar');
