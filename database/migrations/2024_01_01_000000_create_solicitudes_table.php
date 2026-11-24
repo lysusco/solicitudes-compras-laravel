@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('usuario_id')->nullable()->constrained('users');
+            $table->foreignId('usuario_id')->nullable();
             $table->string('estado')->default('pendiente');
             $table->text('observacion')->nullable();
             $table->decimal('total', 12, 2)->default(0);
